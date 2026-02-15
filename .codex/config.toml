@@ -1,3 +1,7 @@
 [mcp_servers.pdf-tools]
-command = "mcp/pdf-mcp-server/.venv/bin/python"
-args = ["mcp/pdf-mcp-server/server.py"]
+command = ".codex/mcp/pdf-mcp-server/.venv/bin/python"
+args = [".codex/mcp/pdf-mcp-server/server.py"]
+
+[mcp_servers.markdownify]
+command = "node"
+args = [".codex/mcp/markdownify-mcp/dist/index.js"]
