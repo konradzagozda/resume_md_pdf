@@ -1,7 +1,3 @@
-# Konrad Zagozda
-Cracow, Poland | +48 537 693 630 | zagozdakonrad@gmail.com  
-[linkedin.com/in/konradzagozda](https://linkedin.com/in/konradzagozda) | [github.com/konradzagozda](https://github.com/konradzagozda) | [zagozdakonrad.com](https://zagozdakonrad.com)
-
 Site Reliability Engineer | Distributed Systems | Cloud Native Architecture
 
 ## About
