@@ -1,3 +1,3 @@
 [mcp_servers.pdf-tools]
-command = "pdf-mcp-server/.venv/bin/python"
-args = ["pdf-mcp-server/server.py"]
+command = "mcp/pdf-mcp-server/.venv/bin/python"
+args = ["mcp/pdf-mcp-server/server.py"]
