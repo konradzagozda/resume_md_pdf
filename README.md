@@ -1,6 +1,6 @@
 # Resume
 
-Styles are appied to 
+Styles are appied to
 - pdf rendered content
 - some markdown renderers (github markdown preview doesn't support it)
 
