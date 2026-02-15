@@ -44,3 +44,20 @@ When converting a PDF resume to Markdown, use Markdownify MCP:
 `mcp__markdownify__pdf-to-markdown`
 
 Warning: output quality can vary; best for extracting raw text.
+
+## Justfile Shortcuts
+
+Use `just` targets from the repository root:
+
+- `just compare_contents`
+  - Runs `validation/test_content_match.py`.
+  - Strips styles/HTML from `workshop/styled_resume.md`.
+  - Compares against `workshop/resume.md` with whitespace-insensitive comparison.
+  - Generates:
+    - `validation/artifacts/styled_resume_stripped.md`
+    - `validation/artifacts/diff.txt`
+  - Informational only: warns on content differences, does not fail on mismatch.
+- `just generate_pdfs`
+  - Builds both PDFs via `./scripts/build-pdf.sh`.
+- `just watch_pdfs`
+  - Runs `./scripts/watch-pdfs.sh` for continuous regeneration.

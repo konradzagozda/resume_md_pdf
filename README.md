@@ -47,3 +47,27 @@ $ ./scripts/watch-pdfs.sh
 [2026-02-15 18:05:52] Initial PDF build started
 [2026-02-15 18:05:52] Rebuilding workshop/resume.md
 ```
+
+## Justfile targets
+
+You can use `just` shortcuts from the repository root:
+
+```bash
+just compare_contents
+just generate_pdfs
+just watch_pdfs
+```
+
+What they do:
+- `compare_contents`
+  - Runs `validation/test_content_match.py`
+  - Strips styles/HTML from `workshop/styled_resume.md`
+  - Compares against `workshop/resume.md` (ignoring whitespace differences)
+  - Produces:
+    - `validation/artifacts/styled_resume_stripped.md`
+    - `validation/artifacts/diff.txt`
+  - Informational only: emits a warning when content differs
+- `generate_pdfs`
+  - Builds both resume PDFs
+- `watch_pdfs`
+  - Starts the continuous PDF watcher
