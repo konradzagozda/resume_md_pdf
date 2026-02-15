@@ -1,2 +1,5 @@
 pdf-mcp-server
 markdownify-mcp
+workshop/*
+!workshop/resume.md
+!workshop/styled_resume.md
