@@ -22,6 +22,16 @@ def strip_html_and_styles(markdown: str) -> str:
     return text
 
 
+def normalize_for_compare(markdown: str) -> str:
+    lines = []
+    for line in markdown.splitlines():
+        # Ignore trailing/leading whitespace and collapse internal whitespace runs.
+        compact = " ".join(line.split())
+        lines.append(compact)
+    normalized = "\n".join(lines).strip() + "\n"
+    return normalized
+
+
 def test_content_match_info_only() -> None:
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
 
@@ -31,8 +41,11 @@ def test_content_match_info_only() -> None:
     stripped = strip_html_and_styles(styled_text)
     STRIPPED_OUT.write_text(stripped, encoding="utf-8")
 
-    resume_lines = resume_text.splitlines(keepends=True)
-    stripped_lines = stripped.splitlines(keepends=True)
+    resume_normalized = normalize_for_compare(resume_text)
+    stripped_normalized = normalize_for_compare(stripped)
+
+    resume_lines = resume_normalized.splitlines(keepends=True)
+    stripped_lines = stripped_normalized.splitlines(keepends=True)
 
     diff_lines = list(
         difflib.unified_diff(
@@ -48,7 +61,7 @@ def test_content_match_info_only() -> None:
     if diff_lines:
         diff_text = "\n".join(diff_lines) + "\n"
         DIFF_OUT.write_text(diff_text, encoding="utf-8")
-        print("[content-match] Differences found (informational only).")
+        print("[content-match][WARNING] Differences found (whitespace ignored; informational only).")
         print(f"[content-match] Wrote stripped file: {STRIPPED_OUT}")
         print(f"[content-match] Wrote diff file: {DIFF_OUT}")
         preview = "\n".join(diff_lines[:120])
