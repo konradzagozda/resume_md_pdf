@@ -1,5 +1,13 @@
 # Resume PDF Workflow
 
+## Editing workflow
+
+- Edit `workshop/resume.md` for raw resume text/content.
+- Edit `workshop/styled_resume.md` when you want styles applied to both:
+  - The generated PDF
+  - The Markdown preview
+- Write styles in CSS.
+
 ## Generate PDF once
 
 From the repository root, run:
