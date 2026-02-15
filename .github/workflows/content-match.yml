@@ -1,0 +1,37 @@
+name: Resume Content Match
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  content-match:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install test dependency
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Content Match
+        run: pytest -s validation/test_content_match.py
+
+      - name: Upload content artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-match-artifacts
+          path: |
+            validation/artifacts/styled_resume_stripped.md
+            validation/artifacts/diff.txt
+          if-no-files-found: error
